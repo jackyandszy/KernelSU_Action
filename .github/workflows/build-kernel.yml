@@ -24,6 +24,7 @@ jobs:
             ADD_LOCALVERSION_TO_FILENAME
             EXTRA_CMDS
             USE_CUSTOM_CLANG
+            USE_INTERNET_CLANG
             CUSTOM_CLANG_SOURCE
             CUSTOM_CLANG_BRANCH
             CUSTOM_CMDS
@@ -92,7 +93,7 @@ jobs:
         mkdir -p $GITHUB_WORKSPACE/kernel_workspace
 
     - name: Download Clang-aosp
-      if: env.USE_CUSTOM_CLANG != 'true'
+      if: env.USE_CUSTOM_CLANG == 'false'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         mkdir clang-aosp
@@ -116,6 +117,13 @@ jobs:
             mkdir clang-aosp
             unzip clang.zip -d clang-aosp/
         fi
+        
+    - name: Load Local Custom-Clang
+      if: env.USE_CUSTOM_CLANG == 'local'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace
+        mkdir clang-aosp
+        unzip $GITHUB_WORKSPACE/clang.zip -d clang-aosp/
 
     - name: Download Gcc-aosp
       if: env.USE_CUSTOM_GCC_64 != 'true' || env.USE_CUSTOM_GCC_32 != 'true'
