@@ -190,6 +190,15 @@ jobs:
           echo "LOCALVERSION=" >> $GITHUB_ENV
         fi
 
+    - name: 等
+      run: |
+        cd $GITHUB_WORKSPACE/
+        mv setting.sh $GITHUB_WORKSPACE/kernel_workspace/android-kernel/
+        mv -f ${{ env.KERNEL_CONFIG }} $GITHUB_WORKSPACE/kernel_workspace/android-kernel/arch/${{ env.ARCH }}/configs/
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel/
+        sh setting.sh
+
+
     - name: Download source boot image
       if: env.BUILD_BOOT_IMG == 'true'
       run: |
