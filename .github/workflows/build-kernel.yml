@@ -118,12 +118,11 @@ jobs:
             unzip clang.zip -d clang-aosp/
         fi
         
-    - name: Load Local Custom-Clang
-      if: env.USE_CUSTOM_CLANG == 'local'
+    - name: 等
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace
-        mkdir clang-aosp
-        unzip $GITHUB_WORKSPACE/clang.zip -d clang-aosp/
+        cd $GITHUB_WORKSPACE/
+        mv setting.sh $GITHUB_WORKSPACE/kernel_workspace/android-kernel/
+        mv ${{ env.KERNEL_CONFIG }} arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}/
 
     - name: Download Gcc-aosp
       if: env.USE_CUSTOM_GCC_64 != 'true' || env.USE_CUSTOM_GCC_32 != 'true'
