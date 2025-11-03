@@ -122,7 +122,9 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/
         mv setting.sh $GITHUB_WORKSPACE/kernel_workspace/android-kernel/
-        mv ${{ env.KERNEL_CONFIG }} arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}/
+        mv -f ${{ env.KERNEL_CONFIG }} $GITHUB_WORKSPACE/kernel_workspace/android-kernel/arch/${{ env.ARCH }}/configs/
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        sh settings.sh
 
     - name: Download Gcc-aosp
       if: env.USE_CUSTOM_GCC_64 != 'true' || env.USE_CUSTOM_GCC_32 != 'true'
