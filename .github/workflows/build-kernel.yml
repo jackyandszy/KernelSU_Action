@@ -117,11 +117,6 @@ jobs:
             mkdir clang-aosp
             unzip clang.zip -d clang-aosp/
         fi
-        
-    - name: 等
-      run: |
-        cd $GITHUB_WORKSPACE/
-        mv -f ${{ env.KERNEL_CONFIG }} $GITHUB_WORKSPACE/kernel_workspace/android-kernel/arch/${{ env.ARCH }}/configs/
 
     - name: Download Gcc-aosp
       if: env.USE_CUSTOM_GCC_64 != 'true' || env.USE_CUSTOM_GCC_32 != 'true'
