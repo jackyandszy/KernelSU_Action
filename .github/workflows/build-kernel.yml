@@ -113,7 +113,7 @@ jobs:
                 git clone ${{ env.CUSTOM_CLANG_SOURCE }} -b ${{ env.CUSTOM_CLANG_BRANCH }} clang-aosp --depth=1
             fi
         else
-            wget -O clang.zip ${{ env.CUSTOM_CLANG_SOURCE }}
+            wget -O clang.7z ${{ env.CUSTOM_CLANG_SOURCE }}
             mkdir clang-aosp
             7z x clang.7z -o clang-aosp/
         fi
