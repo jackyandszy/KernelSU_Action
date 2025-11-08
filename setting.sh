@@ -1,3 +1,3 @@
 #!/bin/bash
-#sed -i '1i /plugin/;' arch/arm64/boot/dts/qcom/cepheus-pinctrl.dtsi
-#sed -i '1i /dts-v1/;' arch/arm64/boot/dts/qcom/cepheus-pinctrl.dtsi
+#cd $GITHUB_WORKSPACE/
+#mv -f ${{ env.KERNEL_CONFIG }} $GITHUB_WORKSPACE/kernel_workspace/android-kernel/arch/${{ env.ARCH }}/configs/
